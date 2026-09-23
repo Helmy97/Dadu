@@ -1,1 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Coding: Simulasi Dadu</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            background-color: #f0f2f5;
+            padding: 50px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: inline-block;
+        }
+        .dice {
+            font-size: 100px;
+            margin: 20px;
+            transition: transform 0.5s ease;
+        }
+        .shake {
+            animation: shakeAnim 0.5s ease;
+        }
+        @keyframes shakeAnim {
+            0% { transform: rotate(0deg); }
+            20% { transform: rotate(-20deg) scale(1.1); }
+            40% { transform: rotate(20deg) scale(1.1); }
+            60% { transform: rotate(-20deg) scale(1.1); }
+            80% { transform: rotate(20deg) scale(1.1); }
+            100% { transform: rotate(0deg); }
+        }
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Simulasi Lempar Dadu</h2>
+    <!-- Menggunakan simbol Unicode untuk dadu -->
+    <div id="dice-display" class="dice">⚀</div>
+    <button onclick="rollDice()">Lempar Dadu!</button>
+</div>
+
+<script>
+    // Array berisi simbol Unicode dadu dari angka 1 sampai 6
+    const diceFaces = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
+
+    function rollDice() {
+        const diceElement = document.getElementById('dice-display');
+        
+        // Menambah efek animasi bergetar
+        diceElement.classList.add('shake');
+        
+        // Menghapus animasi setelah 500ms agar bisa diulang
+        setTimeout(() => {
+            diceElement.classList.remove('shake');
+        }, 500);
+
+        // Logika Matematika Acak (1-6)
+        // Math.random() menghasilkan angka 0 sampai 0.999...
+        // Dikalikan 6 dan di-floor (dibulatkan ke bawah) menghasilkan indeks 0 - 5
+        const randomIndex = Math.floor(Math.random() * 6);
+        
+        // Mengubah tampilan dadu berdasarkan hasil acak
+        diceElement.innerText = diceFaces[randomIndex];
+    }
+</script>
+
+</body>
+</html>
 
